@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Funds Transfer</title>
+  </head>
+  <body>
+    <h1>Funds Transfer</h1>
+    <form
+      action="#"
+      data-th-object="${fundsTransfer}"
+      data-th-action="@{/transfer}"
+      method="post"
+    >
+      <p>
+        From account:
+        <select data-th-field="*{fromAccount}">
+          <option
+            data-th-each="account:${accountList}"
+            data-th-value="${account.account_id}"
+            data-th-text="${account}"
+          ></option>
+        </select>
+        <br />
+      </p>
+      <p>
+        To account:
+        <select data-th-field="*{toAccount}">
+          <option
+            data-th-each="account:${accountList}"
+            data-th-value="${account.account_id}"
+            data-th-text="${account}"
+          ></option>
+        </select>
+        <br />
+      </p>
+      <p>
+        Amount: <input type="number" data-th-field="*{amount}" />
+        <br />
+      </p>
+      <p>
+        Comments: <input type="text" data-th-field="*{comments}" />
+        <br />
+      </p>
+      <p>
+        <input type="submit" value="Transfer">
+    </p>
+    <span data-th-if="${#fields.hasErrors('dateOfBirth')}" data-th-errors="*{dateOfBirth}"></span>
+    <!-- <div data-th-if="${#fields.hasErrors('*')}">
+      <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+    </div> -->
+    </form>
+  </body>
+</html>
