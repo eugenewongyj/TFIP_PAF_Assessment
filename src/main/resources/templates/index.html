@@ -47,10 +47,10 @@
       <p>
         <input type="submit" value="Transfer">
     </p>
-    <span data-th-if="${#fields.hasErrors('dateOfBirth')}" data-th-errors="*{dateOfBirth}"></span>
-    <!-- <div data-th-if="${#fields.hasErrors('*')}">
+    <!-- <span data-th-if="${#fields.hasErrors('dateOfBirth')}" data-th-errors="*{dateOfBirth}"></span> -->
+    <div data-th-if="${#fields.hasErrors('*')}">
       <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
-    </div> -->
+    </div>
     </form>
   </body>
 </html>

@@ -1,11 +1,13 @@
 package sg.edu.nus.iss.workshop22.services;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import sg.edu.nus.iss.workshop22.models.Account;
 import sg.edu.nus.iss.workshop22.models.FundsTransfer;
 import sg.edu.nus.iss.workshop22.repositories.AccountRepository;
 
@@ -14,6 +16,16 @@ public class FundsTransferService {
 
     @Autowired
     private AccountRepository accountRepository;
+
+    public boolean isAccountValid(String account_id) {
+        Optional<Account> accountOpt = accountRepository.findAccountByAccountId(account_id);
+        if (accountOpt.isPresent()) {
+            return true;
+        }
+
+        return false;
+
+    }
     
     @Transactional
     public FundsTransfer saveFundsTransfer(FundsTransfer fundsTransfer) {

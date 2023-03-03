@@ -1,6 +1,7 @@
 package sg.edu.nus.iss.workshop22.models;
 
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public class FundsTransfer {
@@ -13,6 +14,7 @@ public class FundsTransfer {
     @Size(min=10, max=10, message="The length of the account id should be 10 characters")
     private String toAccount;
 
+    @NotNull(message="The transfer amount is not 0 or negative number")
     @Min(value=10, message="The minimum transfer amount is $10")
     private Double amount;
 
