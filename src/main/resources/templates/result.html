@@ -13,10 +13,10 @@
             <td>Your transfer of $<span data-th-text="${fundsTransferSaved.amount}"></span> from</td>
         </tr>
         <tr>
-            <td><span data-th-text="${fundsTransferSaved.fromAccount}"></span> to</td>
+            <td data-th-text="${fundsTransferSaved.fromName} + ' (' + ${fundsTransferSaved.fromAccount} + ') to'"></td>
         </tr>
         <tr>
-            <td><span data-th-text="${fundsTransferSaved.toAccount}"></span></td>
+            <td data-th-text="${fundsTransferSaved.toName} + ' (' + ${fundsTransferSaved.toAccount} + ')'"></td>
         </tr>
         <tr>
             <td>is successful.</td>

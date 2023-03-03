@@ -19,16 +19,6 @@ public class FundsTransferService {
 
     @Autowired
     private LogAuditService logAuditService;
-
-    public boolean isAccountValid(String account_id) {
-        Optional<Account> accountOpt = accountRepository.findAccountByAccountId(account_id);
-        if (accountOpt.isPresent()) {
-            return true;
-        }
-
-        return false;
-
-    }
     
     @Transactional
     public FundsTransfer saveFundsTransfer(FundsTransfer fundsTransfer) {

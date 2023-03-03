@@ -20,6 +20,10 @@ public class FundsTransfer {
 
     private String comments;
 
+    private String fromName;
+
+    private String toName;
+
     public FundsTransfer() {
     }
 
@@ -62,5 +66,23 @@ public class FundsTransfer {
     public void setComments(String comments) {
         this.comments = comments;
     }
+
+    public String getFromName() {
+        return fromName;
+    }
+
+    public void setFromName(String fromName) {
+        this.fromName = fromName;
+    }
+
+    public String getToName() {
+        return toName;
+    }
+
+    public void setToName(String toName) {
+        this.toName = toName;
+    }
+
+    
 
 }

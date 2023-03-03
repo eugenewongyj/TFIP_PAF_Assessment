@@ -1,6 +1,7 @@
 package sg.edu.nus.iss.workshop22.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,12 +33,19 @@ public class FundsTransferController {
             bindingResult.addError(err);
         }
 
-        if (!fundsTransferService.isAccountValid(fundsTransfer.getFromAccount())) {
+        Optional<Account> fromAccountOpt = accountRepository.findAccountByAccountId(fundsTransfer.getFromAccount());
+        if (fromAccountOpt.isEmpty()) {
             ObjectError err = new ObjectError("fromAccountDoesNotExist", "The from account does not exist");
             bindingResult.addError(err);
+        } else {
+            if (fromAccountOpt.get().getBalance() < fundsTransfer.getAmount()) {
+                ObjectError err = new ObjectError("insufficientFunds", "There are insufficient funds in the from-account");
+                bindingResult.addError(err);
+            }
         }
 
-        if (!fundsTransferService.isAccountValid(fundsTransfer.getToAccount())) {
+        Optional<Account> toAccountOpt = accountRepository.findAccountByAccountId(fundsTransfer.getToAccount());
+        if (toAccountOpt.isEmpty()) {
             ObjectError err = new ObjectError("toAccountDoesNotExist", "The to account does not exist");
             bindingResult.addError(err);
         }
@@ -51,6 +59,8 @@ public class FundsTransferController {
             return "index";
         }
 
+        fundsTransfer.setFromName(fromAccountOpt.get().getName());
+        fundsTransfer.setToName(toAccountOpt.get().getName());
         FundsTransfer fundsTransferSaved = fundsTransferService.saveFundsTransfer(fundsTransfer);
         model.addAttribute("fundsTransferSaved", fundsTransferSaved);
         return "result";
