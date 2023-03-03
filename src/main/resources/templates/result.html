@@ -4,9 +4,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Successful Transaction</title>
 </head>
 <body>
+    <h1>Successful Transaction</h1>
+    <table>
+        <tr>
+            <td>Your transfer of $<span data-th-text="${fundsTransferSaved.amount}"></span> from</td>
+        </tr>
+        <tr>
+            <td><span data-th-text="${fundsTransferSaved.fromAccount}"></span> to</td>
+        </tr>
+        <tr>
+            <td><span data-th-text="${fundsTransferSaved.toAccount}"></span></td>
+        </tr>
+        <tr>
+            <td>is successful.</td>
+        </tr>
+        <tr>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Transaction id is <span data-th-text="${fundsTransferSaved.id}"></span></td>
+        </tr>
+    </table>
     
 </body>
 </html>
