@@ -49,9 +49,6 @@ public class FundsTransferController {
             ObjectError err = new ObjectError("toAccountDoesNotExist", "The to account does not exist");
             bindingResult.addError(err);
         }
-
-        // Where to put the mapper for DTO to model.
-        // If you put b
         
         if (bindingResult.hasErrors()) {
             List<Account> accountList = accountRepository.findAllAccounts();
